@@ -33,15 +33,23 @@ public class PrimaryController {
         display.setText(String.valueOf(raiz));
     }
 
-    public void soma(){
+    public void iniciarOperacao(ActionEvent event){
         numero = Double.valueOf(display.getText());
-        operacao = "soma";
+        Button botao = (Button) event.getSource();
+        operacao = botao.getText();
         clear();
     }
 
     public void calcular(){
         double numero2 = Double.valueOf(display.getText());
-        double resultado = numero + numero2;
+        double resultado;
+        System.out.println(operacao);
+        if(operacao.equals("+")){
+            resultado = numero + numero2;
+        }else{
+            resultado = numero - numero2;
+        }
+
         display.setText(String.valueOf(resultado));
     }
 
