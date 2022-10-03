@@ -14,6 +14,7 @@ public class PrimaryController {
 
     public void digitarNumero(ActionEvent event){
         Button botao = (Button) event.getSource();
+        if (display.getText().equals("0")) display.setText("");
         display.setText(display.getText() + botao.getText());
     }
 
@@ -43,12 +44,27 @@ public class PrimaryController {
     public void calcular(){
         double numero2 = Double.valueOf(display.getText());
         double resultado;
-        System.out.println(operacao);
-        if(operacao.equals("+")){
-            resultado = numero + numero2;
-        }else{
-            resultado = numero - numero2;
-        }
+
+       switch (operacao){
+            case "+":
+                resultado = numero + numero2;
+                break;
+                
+            case "-":
+                resultado = numero - numero2;
+                break;
+
+            case "x":
+                resultado = numero * numero2;
+                break;
+
+            case "/":
+                resultado = numero / numero2;
+                break;
+
+            default:
+                throw new IllegalArgumentException("Operação inválida");
+       }
 
         display.setText(String.valueOf(resultado));
     }
